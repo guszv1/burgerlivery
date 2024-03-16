@@ -1,9 +1,5 @@
 import { Button, Layout } from "../../components";
-import {
-  HomeActionContentElement,
-  HomeBgImage,
-  HomeWrapperElement,
-} from "./Home.style";
+import {HomeActionContentElement,HomeBgImage,HomeWrapperElement,} from "./Home.style";
 import HomeBg from "../../assets/bg-top.jpg";
 import { useNavigate } from "react-router-dom";
 

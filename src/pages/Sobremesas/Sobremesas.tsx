@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import { Button, CategoryList, Layout, ProductCard } from "../../components";
-import { ProductCategories, ProductWrapper } from "./Hamburgers.style";
-import {  ProductCardContent,  ProductCardPrice,} from "../../components/ProductCard/ProductCard.style";
+import { ProductCategories, ProductWrapper } from "./Sobremesas.style";
+import { ProductCardContent,ProductCardPrice,} from "../../components/ProductCard/ProductCard.style";
 
-export default function Hamburgers() {
-  const [isLoading, setIsLoading] = useState(false);
+export default function Sobremesas() {
+  const [isLoading, setIsLoading] = useState(false)
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
 
   const priceFormat = (price: number) => {
-    console.log("cai aqui?");
-
     return new Intl.NumberFormat("pt-BR", {
       style: "currency",
       currency: "BRL",
@@ -26,15 +24,17 @@ export default function Hamburgers() {
       const data = await response.json();
 
       setCategories(data);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
     }
-  };
+    catch (error) {
+      console.log(error);
+    }
+    finally {
+      setIsLoading(false)
+    }
+  }
 
-  const getHamburgers = async () => {
-    const url = "http://localhost:8000/hamburgers";
+  const getSobremesas = async () => {
+    const url = "http://localhost:8000/desserts";
     setIsLoading(true);
 
     try {
@@ -42,36 +42,27 @@ export default function Hamburgers() {
       const data = await response.json();
 
       setProducts(data);
-    } catch (error) {
+    }
+    catch (error) {
       console.log(error);
-    } finally {
+    }
+    finally {
       setIsLoading(false);
     }
-  };
+  }
 
   useEffect(() => {
-    if (categories.length) {
-      return;
-    }
-
-    return () => {
-      getCategories();
-    };
+    //setCategories(categoriesList);
+    getCategories();
   }, []);
 
   useEffect(() => {
-    if (products.length) {
-      return;
-    }
-
-    return () => {
-      getHamburgers();
-    };
+    getSobremesas();
   }, []);
 
   return (
     <Layout>
-      <h1>Hamburgers</h1>
+      <h1>Sobremesas</h1>
       <ProductCategories>
         {isLoading ? (
           <p>Carregando</p>
@@ -90,12 +81,12 @@ export default function Hamburgers() {
               <ProductCardContent>
                 <h2>{product.title}</h2>
                 <p>{product.description}</p>
-                <Button onClick={() => {}}>Adicionar</Button>
+                <Button onClick={() => { }}>Adicionar</Button>
               </ProductCardContent>
               <ProductCardPrice>
                 {priceFormat(product.values.single)}
               </ProductCardPrice>
-              <img src={product.image[0]} alt={product.title} />
+              <img src={product.image} alt={product.title} />
             </ProductCard>
           ))
         )}

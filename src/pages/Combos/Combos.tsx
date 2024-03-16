@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, CategoryList, Layout, ProductCard } from "../../components";
-import { ProductCategories, ProductWrapper } from "./Hamburgers.style";
+import { ProductCategories, ProductWrapper } from "./Combos.style";
 import {  ProductCardContent,  ProductCardPrice,} from "../../components/ProductCard/ProductCard.style";
 
 export default function Hamburgers() {
@@ -71,7 +71,7 @@ export default function Hamburgers() {
 
   return (
     <Layout>
-      <h1>Hamburgers</h1>
+      <h1>Combos</h1>
       <ProductCategories>
         {isLoading ? (
           <p>Carregando</p>
@@ -88,14 +88,14 @@ export default function Hamburgers() {
           products.map((product, index) => (
             <ProductCard key={index}>
               <ProductCardContent>
-                <h2>{product.title}</h2>
-                <p>{product.description}</p>
+              <h2>COMBO {product.title}</h2>
+                <p>{product.description} Acompanha batata tradicional e bebida</p>
                 <Button onClick={() => {}}>Adicionar</Button>
               </ProductCardContent>
               <ProductCardPrice>
-                {priceFormat(product.values.single)}
+                {priceFormat(product.values.combo)}
               </ProductCardPrice>
-              <img src={product.image[0]} alt={product.title} />
+              <img src={product.image[1]} alt={product.title} />
             </ProductCard>
           ))
         )}
