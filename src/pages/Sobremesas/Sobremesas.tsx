@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Button, CategoryList, Layout, ProductCard } from "../../components";
+import { Button, CategoryList, Layout, ProductCard, ButtonRadio} from "../../components";
 import { ProductCategories, ProductWrapper } from "./Sobremesas.style";
 import { ProductCardContent,ProductCardPrice,} from "../../components/ProductCard/ProductCard.style";
 
 export default function Sobremesas() {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
 
@@ -84,7 +84,7 @@ export default function Sobremesas() {
                 <Button onClick={() => { }}>Adicionar</Button>
               </ProductCardContent>
               <ProductCardPrice>
-                {priceFormat(product.values.single)}
+                {priceFormat(product.values)}
               </ProductCardPrice>
               <img src={product.image} alt={product.title} />
             </ProductCard>
